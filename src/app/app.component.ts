@@ -1,4 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+
+import { UserService } from './user/user.module'
+
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +11,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ng-app';
+  constructor(private t: Title, private userService: UserService) {
+
+  }
+  currTitle = 'ng-app';
+
+  changeTitle() {
+    this.userService.changeTitle()
+  }
 }
