@@ -11,6 +11,7 @@ import { UserService } from './user/user.module'
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  color = '';
   constructor(private t: Title, private userService: UserService) {
 
   }

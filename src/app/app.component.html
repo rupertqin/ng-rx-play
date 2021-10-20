@@ -1,6 +1,9 @@
 <div>
-
-  <span (click)="changeTitle()">changeTitle</span>
-
+  <span>
+    <input type="radio" name="colors" (click)="color='lightgreen'" />Green
+    <input type="radio" name="colors" (click)="color='yellow'" />Yellow
+    <input type="radio" name="colors" (click)="color='cyan'" />Cyan
+  </span>
 </div>
+<div [appHighlight]="color">changeTitle</div>
 <router-outlet></router-outlet>
