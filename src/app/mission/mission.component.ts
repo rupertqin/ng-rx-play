@@ -8,23 +8,36 @@ import { MissionService } from './mission.service';
   providers: [MissionService]
 })
 export class MissionComponent implements OnInit {
-  astronauts = ['Lovell', 'Swigert', 'Haise'];
+  astronauts: {name: string, missionService: MissionService}[];
   history: string[] = [];
   missions = ['Fly to the moon!',
               'Fly to mars!',
               'Fly to Vegas!'];
   nextMission = 0;
 
-  constructor(private missionService: MissionService) {
-    missionService.missionConfirmed$.subscribe(
-      astronaut => {
-        this.history.push(`${astronaut} confirmed the mission`);
-      });
+  constructor() {
+
+    this.astronauts = ['Lovell', 'Swigert', 'Haise'].map(name => {
+      const missionService = new MissionService()
+      missionService.missionConfirmed$.subscribe(
+        astronaut => {
+          this.history.push(`${astronaut} confirmed the mission`);
+        });
+      return {
+        name,
+        missionService,
+      }
+    })
+    
+
+
   }
 
   announce() {
     const mission = this.missions[this.nextMission++];
-    this.missionService.announceMission(mission);
+    this.astronauts.forEach(astronaut => {
+      astronaut.missionService.announceMission(mission);
+    })
     this.history.push(`Mission "${mission}" announced`);
     if (this.nextMission >= this.missions.length) { this.nextMission = 0; }
   }

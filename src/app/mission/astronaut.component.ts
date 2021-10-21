@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
 
 import { MissionService } from './mission.service';
 import { Subscription } from 'rxjs';
@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
   selector: 'app-astronaut',
   template: `
     <p>
-      {{astronaut}}: <strong>{{mission}}</strong>
+      {{astronaut.name}}: <strong>{{mission}}</strong>
       <button
         (click)="confirm()"
         [disabled]="!announced || confirmed">
@@ -16,30 +16,35 @@ import { Subscription } from 'rxjs';
     </p>
   `
 })
-export class AstronautComponent implements OnDestroy {
-  @Input() astronaut = '';
+export class AstronautComponent implements OnDestroy, OnChanges {
+  @Input() astronaut: { name: string, missionService: MissionService } = { name: '', missionService: new MissionService() }; 
   mission = '<no mission announced>';
   confirmed = false;
   announced = false;
-  subscription: Subscription;
+  subscription: Subscription|null = null;
 
-  constructor(private missionService: MissionService) {
-		debugger
-    this.subscription = missionService.missionAnnounced$.subscribe(
-      mission => {
-        this.mission = mission;
-        this.announced = true;
-        this.confirmed = false;
-    });
+  constructor() {
   }
 
   confirm() {
     this.confirmed = true;
-    this.missionService.confirmMission(this.astronaut);
+    this.astronaut.missionService.confirmMission(this.astronaut.name);
   }
+
+	ngOnChanges(changes: SimpleChanges) {
+    this.subscription = changes.astronaut.currentValue.missionService.missionAnnounced$.subscribe(
+      (mission: any) => {
+        this.mission = mission;
+        this.announced = true;
+        this.confirmed = false;
+    });
+
+	}
 
   ngOnDestroy() {
     // prevent memory leak when component destroyed
-    this.subscription.unsubscribe();
+		if (this.subscription) {
+	    this.subscription.unsubscribe();
+		}
   }
 }

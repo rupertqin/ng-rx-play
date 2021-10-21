@@ -1,19 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable, Subscriber } from 'rxjs';
 
+let count = 0;
+
 @Injectable()
 export class MissionService {
 
-  // Observable string sources
-  private missionAnnouncedSource = new Subscriber<string>();
-  private missionConfirmedSource = new Subscriber<string>();
+  private missionAnnouncedSource: Subscriber<string>;
+  private missionConfirmedSource: Subscriber<string>;
 
   missionAnnounced$: Observable<string>;
   missionConfirmed$: Observable<string>;
+  count = 0;
 
 
   constructor() {
-    // Observable string streams
+    this.count = count++;
+    this.missionAnnouncedSource = new Subscriber();
+    this.missionConfirmedSource = new Subscriber();
+
     this.missionAnnounced$ = new Observable(subscriber => {
       this.missionAnnouncedSource = subscriber
     })
