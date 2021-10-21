@@ -8,8 +8,8 @@ export class MissionService {
   private missionAnnouncedSource = new Subscriber<string>();
   private missionConfirmedSource = new Subscriber<string>();
 
-  missionAnnounced$: Observable<unknown>;
-  missionConfirmed$: Observable<unknown>;
+  missionAnnounced$: Observable<string>;
+  missionConfirmed$: Observable<string>;
 
 
   constructor() {
@@ -20,7 +20,6 @@ export class MissionService {
     this.missionConfirmed$ = new Observable(subscriber => {
       this.missionConfirmedSource = subscriber
     })
-
   }
 
   // Service message commands

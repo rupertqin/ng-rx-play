@@ -24,9 +24,10 @@ export class AstronautComponent implements OnDestroy {
   subscription: Subscription;
 
   constructor(private missionService: MissionService) {
+		debugger
     this.subscription = missionService.missionAnnounced$.subscribe(
       mission => {
-        this.mission = mission as string;
+        this.mission = mission;
         this.announced = true;
         this.confirmed = false;
     });
