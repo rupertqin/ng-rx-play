@@ -21,17 +21,21 @@ export class AstronautComponent implements OnDestroy {
   mission = '<no mission announced>';
   confirmed = false;
   announced = false;
-  subscription: Subscription;
+  // subscription: Subscription;
 
   constructor(private missionService: MissionService) {
-		debugger
-    this.subscription = missionService.missionAnnounced$.subscribe(
-      mission => {
-        this.mission = mission;
-        this.announced = true;
-        this.confirmed = false;
-    });
+		// debugger
+    // this.subscription = missionService.missionAnnounced$.subscribe(
+    //   mission => {
+    // });
   }
+
+	setMission(mission: string) {
+    this.mission = mission;
+    this.announced = true;
+    this.confirmed = false;
+
+	}
 
   confirm() {
     this.confirmed = true;
@@ -40,6 +44,6 @@ export class AstronautComponent implements OnDestroy {
 
   ngOnDestroy() {
     // prevent memory leak when component destroyed
-    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
   }
 }

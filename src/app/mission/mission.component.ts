@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
 import { MissionService } from './mission.service';
+import { AstronautComponent } from './astronaut.component'
 
 @Component({
   selector: 'app-mission',
@@ -15,6 +16,9 @@ export class MissionComponent implements OnInit {
               'Fly to Vegas!'];
   nextMission = 0;
 
+  @ViewChildren(AstronautComponent)
+  private atcomp!: QueryList<AstronautComponent>;
+
   constructor(private missionService: MissionService) {
     missionService.missionConfirmed$.subscribe(
       astronaut => {
@@ -24,7 +28,8 @@ export class MissionComponent implements OnInit {
 
   announce() {
     const mission = this.missions[this.nextMission++];
-    this.missionService.announceMission(mission);
+    this.atcomp.forEach(c => c.setMission(mission))
+    // this.missionService.announceMission(mission);
     this.history.push(`Mission "${mission}" announced`);
     if (this.nextMission >= this.missions.length) { this.nextMission = 0; }
   }
