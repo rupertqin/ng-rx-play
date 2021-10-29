@@ -18,6 +18,7 @@ import { Subscription } from 'rxjs';
 })
 export class AstronautComponent implements OnDestroy {
   @Input() astronaut = '';
+  @Input() count = 3;
   mission = '<no mission announced>';
   confirmed = false;
   announced = false;

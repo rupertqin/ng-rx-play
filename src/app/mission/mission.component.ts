@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MissionService } from './mission.service';
+import { Subject, Subscription } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-mission',
@@ -14,6 +16,10 @@ export class MissionComponent implements OnInit {
               'Fly to mars!',
               'Fly to Vegas!'];
   nextMission = 0;
+
+  private subject$ = new Subject<void>();
+  private unsubscribe$ = new Subject();
+  private subscriptionList: Subscription[] = [];
 
   constructor(private missionService: MissionService) {
     missionService.missionConfirmed$.subscribe(
@@ -30,6 +36,14 @@ export class MissionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // this.subject$.pipe(takeUntil(this.subject$)).subscribe(() => console.log('收到数据啦'));
+    // this.subject$.pipe(takeUntil(this.subject$)).subscribe(() => console.log('收到数据啦'));
+    // this.subject$.pipe(takeUntil(this.subject$)).subscribe(() => console.log('收到数据啦'));
+    this.subject$.subscribe(() => console.log('收到数据啦'));
+    this.subject$.subscribe(() => console.log('收到数据啦'));
+    this.subject$.subscribe(() => console.log('收到数据啦'));
+    this.subject$.next();
+    this.subject$.next();
   }
 
 }
