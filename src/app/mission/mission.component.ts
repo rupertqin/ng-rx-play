@@ -43,7 +43,7 @@ export class MissionComponent implements OnInit {
     this.subject$.subscribe(() => console.log('收到数据啦'));
     this.subject$.subscribe(() => console.log('收到数据啦'));
     this.subject$.next();
-    this.subject$.next();
+    // this.subject$.next();
   }
 
 }

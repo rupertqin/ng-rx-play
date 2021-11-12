@@ -1,2 +1,11 @@
+{{ say('222') }}
+<!-- {{ [] | callback: say }} -->
 <p>article works!</p>
-<span class="active">dddd</span>
+<span class="active" id="theCanvas">dddd</span>
+<!-- <pdf-viewer [src]="src"></pdf-viewer> -->
+<p *ngFor="let user of users">
+	{{ user.name }}有一只猫 
+	<!-- {{ user.id | cat: 'name' }} -->
+	<!-- {{ getCat(user.id) }} -->
+	{{ user.id | callback: getCat }}
+</p>
