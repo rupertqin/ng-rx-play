@@ -1,13 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { MissionService } from './mission.service';
 import { Subject, Subscription } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+
+import { UserService } from '../user/user.service'
+
 
 @Component({
   selector: 'app-mission',
   templateUrl: './mission.component.html',
   styleUrls: ['./mission.component.scss'],
-  providers: [MissionService]
+  providers: [
+    MissionService,
+    // UserService
+  ]
 })
 export class MissionComponent implements OnInit {
   astronauts = ['Lovell', 'Swigert', 'Haise'];
@@ -21,7 +26,7 @@ export class MissionComponent implements OnInit {
   private unsubscribe$ = new Subject();
   private subscriptionList: Subscription[] = [];
 
-  constructor(private missionService: MissionService) {
+  constructor(private missionService: MissionService, private userService: UserService) {
     missionService.missionConfirmed$.subscribe(
       astronaut => {
         this.history.push(`${astronaut} confirmed the mission`);
@@ -44,6 +49,10 @@ export class MissionComponent implements OnInit {
     this.subject$.subscribe(() => console.log('收到数据啦'));
     this.subject$.next();
     // this.subject$.next();
+  }
+
+  changeTitle() {
+    this.userService.changeTitle()
   }
 
 }

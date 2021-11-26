@@ -4,7 +4,7 @@ import { MissionService } from './mission.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-astronaut',
+  selector: 'app-mission-astronaut',
   template: `
     <p>
       {{astronaut}}: <strong>{{mission}}</strong>

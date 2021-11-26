@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener, Pipe, PipeTransform } from '@angular/core';
 import * as pdfjsLib from 'pdfjs-dist';
 // import PDFJSWorker from 'pdfjs-dist/legacy/build/pdf.worker';
+import { UserService } from '../../user/user.service'
 
 
 
@@ -9,11 +10,14 @@ const pdfPath = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',
-  styleUrls: ['./article.component.scss']
+  styleUrls: ['./article.component.scss'],
+  providers: [
+    UserService
+  ]
 })
 export class ArticleComponent implements OnInit {
 
-  constructor() {
+  constructor(private userService: UserService) {
 
   }
   users = [{ id: 1, name: 'wang' }, { id: 2, name: 'li' }];
@@ -38,30 +42,34 @@ export class ArticleComponent implements OnInit {
     // pdfjsLib.GlobalWorkerOptions.workerPort = new pdfjsLib.PDFWorker()
 
     // Loading a document.
-    const loadingTask = pdfjsLib.getDocument(pdfPath);
-    loadingTask.promise
-      .then(function (pdfDocument: any) {
-        // Request a first page
-        return pdfDocument.getPage(1).then(function (pdfPage: any) {
-          // Display page on the existing canvas with 100% scale.
-          const viewport = pdfPage.getViewport({ scale: 1.0 });
-          const canvas: any = document.getElementById("theCanvas");
-          canvas.width = viewport.width;
-          canvas.height = viewport.height;
-          const ctx = canvas.getContext("2d");
-          const renderTask = pdfPage.render({
-            canvasContext: ctx,
-            viewport,
-          });
-          return renderTask.promise;
-        });
-      })
-      .catch(function (reason: any) {
-        console.error("Error: " + reason);
-      });
+    // const loadingTask = pdfjsLib.getDocument(pdfPath);
+    // loadingTask.promise
+    //   .then(function (pdfDocument: any) {
+    //     // Request a first page
+    //     return pdfDocument.getPage(1).then(function (pdfPage: any) {
+    //       // Display page on the existing canvas with 100% scale.
+    //       const viewport = pdfPage.getViewport({ scale: 1.0 });
+    //       const canvas: any = document.getElementById("theCanvas");
+    //       canvas.width = viewport.width;
+    //       canvas.height = viewport.height;
+    //       const ctx = canvas.getContext("2d");
+    //       const renderTask = pdfPage.render({
+    //         canvasContext: ctx,
+    //         viewport,
+    //       });
+    //       return renderTask.promise;
+    //     });
+    //   })
+    //   .catch(function (reason: any) {
+    //     console.error("Error: " + reason);
+    //   });
   }
   say(str: string) {
     console.log(str || 'one')
+  }
+
+  changeTitle() {
+    this.userService.changeTitle()
   }
 
 }

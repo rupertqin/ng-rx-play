@@ -10,8 +10,9 @@ import { UserModule } from './user/user.module';
 import { HighlightDirective } from './directives/highlight.directive';
 import { UnlessDirective } from './directives/unless.directive';
 import { ArticleComponent, CatPipe } from './components/article/article.component';
-import { MissionComponent } from './mission/mission.component';
-import { AstronautComponent } from './mission/astronaut.component';
+
+import { MissionModule } from './mission/mission.module';
+import { MissionService } from './mission/mission.service';
 
 @NgModule({
   declarations: [
@@ -19,8 +20,6 @@ import { AstronautComponent } from './mission/astronaut.component';
     HighlightDirective,
     UnlessDirective,
     ArticleComponent,
-    MissionComponent,
-    AstronautComponent,
     CallbackPipe,
     CatPipe,
   ],
@@ -28,9 +27,12 @@ import { AstronautComponent } from './mission/astronaut.component';
     BrowserModule,
     AppRoutingModule,
     // PdfViewerModule,
-    UserModule
+    MissionModule,
+    // UserModule
   ],
-  providers: [],
+  providers: [
+    // MissionService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -6,10 +6,11 @@
   </span>
 </div>
 <div *ngUnless="color === 'yellow'">
-  <div [appHighlight]="color" defaultColor="yellow" >changeTitle {{ 1 +1 }} </div>
+  <div [appHighlight]="color" (click)="changeTitle()" defaultColor="yellow" >changeTitle {{ 1 +1 }} </div>
 </div>
 <div class="active">
   <app-article></app-article>
 </div>
 <app-mission></app-mission>
 <router-outlet></router-outlet>
+<!-- <app-mission-astronaut></app-mission-astronaut> -->
