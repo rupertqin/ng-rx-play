@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 // import the new component
 import { MissionComponent } from './mission.component';
-import { AstronautComponent } from './astronaut.component';
+import { MissionAstronautComponent } from './mission-astronaut.component';
 import { MissionService } from './mission.service';
 import { UserService } from '../user/user.service'
 
@@ -16,11 +16,11 @@ import { UserService } from '../user/user.service'
   ],
   declarations: [
     MissionComponent,
-		AstronautComponent
+		MissionAstronautComponent
   ],
   exports: [
     MissionComponent,
-		// AstronautComponent
+		// MissionAstronautComponent
   ]
 })
 export class MissionModule { }

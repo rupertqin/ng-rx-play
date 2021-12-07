@@ -1,10 +1,11 @@
-import { Component, Input, OnDestroy } from '@angular/core';
+import { Component, Input, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 
 import { MissionService } from './mission.service';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-mission-astronaut',
+  changeDetection: ChangeDetectionStrategy.Default,
   template: `
     <p>
       {{astronaut}}: <strong>{{mission}}</strong>
@@ -16,7 +17,7 @@ import { Subscription } from 'rxjs';
     </p>
   `
 })
-export class AstronautComponent implements OnDestroy {
+export class MissionAstronautComponent implements OnDestroy {
   @Input() astronaut = '';
   @Input() count = 3;
   mission = '<no mission announced>';

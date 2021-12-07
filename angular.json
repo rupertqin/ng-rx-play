@@ -75,6 +75,7 @@
               "browserTarget": "ng-app:build:production"
             },
             "development": {
+              "port": 3333,
               "browserTarget": "ng-app:build:development"
             }
           },
