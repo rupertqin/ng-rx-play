@@ -1,23 +1,30 @@
-import { Component, OnInit, HostListener, Pipe, PipeTransform, ChangeDetectionStrategy } from '@angular/core';
+import { Component, AfterViewInit, HostListener, Pipe, PipeTransform, ChangeDetectionStrategy, ViewChild, ElementRef } from '@angular/core';
 import * as pdfjsLib from 'pdfjs-dist';
 import { UserService } from '../user/user.service';
+import { fromTextArea, showHint } from 'codemirror';
+import 'codemirror/mode/javascript/javascript.js'
+import 'codemirror/addon/hint/show-hint.js'
 
 const pdfPath = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
 
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',
-  styleUrls: ['./article.component.scss'],
+  styleUrls: [
+    './article.component.scss',
+    '../../../node_modules/codemirror/lib/codemirror.css',
+    '../../../node_modules/codemirror/addon/hint/show-hint.css',
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     UserService
   ]
 })
-export class ArticleComponent implements OnInit {
-
+export class ArticleComponent implements AfterViewInit {
   constructor(private userService: UserService) {
-
+    this.myTextarea = null;
   }
+  @ViewChild('myTextarea') myTextarea: ElementRef<HTMLTextAreaElement>|null;
   users = [{ id: 1, name: 'wang' }, { id: 2, name: 'li' }];
   cats = [{ name: 'Tom', userId: 1 }, { name: 'Jerry', userId: 2 }];
 
@@ -31,36 +38,24 @@ export class ArticleComponent implements OnInit {
   }
 
   src = pdfPath;
+  ngOnInit() {
+    console.log(this.myTextarea);
+  }
 
-  async ngOnInit(): Promise<void> {
-
-    // Setting worker path to worker bundle.
-    // pdfjsLib.GlobalWorkerOptions.workerSrc = "../../../../../node_modules/pdfjs-dist/legacy/build/pdf.worker.entry.js";
-    // const pdfjsWorker = await import('pdfjs-dist/build/pdf.worker.entry');
-    // pdfjsLib.GlobalWorkerOptions.workerPort = new pdfjsLib.PDFWorker()
-
-    // Loading a document.
-    // const loadingTask = pdfjsLib.getDocument(pdfPath);
-    // loadingTask.promise
-    //   .then(function (pdfDocument: any) {
-    //     // Request a first page
-    //     return pdfDocument.getPage(1).then(function (pdfPage: any) {
-    //       // Display page on the existing canvas with 100% scale.
-    //       const viewport = pdfPage.getViewport({ scale: 1.0 });
-    //       const canvas: any = document.getElementById("theCanvas");
-    //       canvas.width = viewport.width;
-    //       canvas.height = viewport.height;
-    //       const ctx = canvas.getContext("2d");
-    //       const renderTask = pdfPage.render({
-    //         canvasContext: ctx,
-    //         viewport,
-    //       });
-    //       return renderTask.promise;
-    //     });
-    //   })
-    //   .catch(function (reason: any) {
-    //     console.error("Error: " + reason);
-    //   });
+  ngAfterViewInit(): void {
+    if (this.myTextarea) {
+      var editor = fromTextArea(this.myTextarea.nativeElement, {
+        lineNumbers: true,
+        mode: 'javascript',
+        onKeyEvent: function (e, s) {
+          if (s.type == "keyup") {
+            showHint(e);
+          }
+          return false
+        }
+      });
+      editor.setValue("var a = 'hello world';")
+    }
   }
   say(str: string) {
     console.log(str || 'one')
@@ -69,7 +64,6 @@ export class ArticleComponent implements OnInit {
   changeTitle() {
     this.userService.changeTitle()
   }
-
 }
 
 @Pipe({

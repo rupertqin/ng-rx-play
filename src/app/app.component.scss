@@ -1,3 +1,14 @@
 :host ::ng-deep span {
 	font-weight: bold;
 }
+
+ul {
+	padding-left: 0;
+	li {
+		display: inline-block;
+		margin-right: 10px;
+	}
+}
+.content {
+	margin-bottom: 100px;
+}
