@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, HostListener, Pipe, PipeTransform, ChangeDetectionStrategy, ViewChild, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, HostListener, ChangeDetectionStrategy, ViewChild, ElementRef } from '@angular/core';
 import * as pdfjsLib from 'pdfjs-dist';
 import { UserService } from '../user/user.service';
 import { fromTextArea, showHint } from 'codemirror';
@@ -27,6 +27,7 @@ export class ArticleComponent implements AfterViewInit {
   @ViewChild('myTextarea') myTextarea: ElementRef<HTMLTextAreaElement>|null;
   users = [{ id: 1, name: 'wang' }, { id: 2, name: 'li' }];
   cats = [{ name: 'Tom', userId: 1 }, { name: 'Jerry', userId: 2 }];
+  src = pdfPath;
 
   @HostListener('click')
   clicked() { }
@@ -37,7 +38,6 @@ export class ArticleComponent implements AfterViewInit {
     return this.cats.find(c => c.userId === userId)?.name;
   }
 
-  src = pdfPath;
   ngOnInit() {
     console.log(this.myTextarea);
   }
@@ -57,27 +57,12 @@ export class ArticleComponent implements AfterViewInit {
       editor.setValue("var a = 'hello world';")
     }
   }
+
   say(str: string) {
     console.log(str || 'one')
   }
 
   changeTitle() {
     this.userService.changeTitle()
-  }
-}
-
-@Pipe({
-  name: 'cat',
-  pure: true
-})
-export class CatPipe implements PipeTransform {
-  constructor(private appComponent: ArticleComponent) {}
-
-  transform(id: number, property: 'name' | 'userId'): any {
-    console.log('🤪User', id);
-    const cat = this.appComponent.cats.find(c => c.userId === id);
-    if (cat) {
-      return cat[property];
-    }
   }
 }

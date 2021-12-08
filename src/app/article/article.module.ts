@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ArticleComponent, CatPipe } from './article.component'
+import { ArticleComponent } from './article.component'
 import { ArticleRoutingModule } from './article-routing.module'
 import { CallbackPipe } from '../callback.pipe'
 
@@ -14,7 +14,6 @@ import { CallbackPipe } from '../callback.pipe'
   declarations: [
     ArticleComponent,
     CallbackPipe,
-    CatPipe,
   ],
   exports: [
   ]
