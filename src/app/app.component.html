@@ -1,4 +1,9 @@
 <div>
+  <a [routerLink]="['/user']">
+    link to user component
+  </a>
+</div>
+<div>
   <span>
     <input type="radio" name="colors" (click)="color='lightgreen'" />Green
     <input type="radio" name="colors" (click)="color='yellow'" /> <span [ngClass]="{active: color === 'yellow'}" >Yellow</span>  

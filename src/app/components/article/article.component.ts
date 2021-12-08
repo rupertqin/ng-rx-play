@@ -1,6 +1,5 @@
-import { Component, OnInit, HostListener, Pipe, PipeTransform } from '@angular/core';
+import { Component, OnInit, HostListener, Pipe, PipeTransform, ChangeDetectionStrategy } from '@angular/core';
 import * as pdfjsLib from 'pdfjs-dist';
-// import PDFJSWorker from 'pdfjs-dist/legacy/build/pdf.worker';
 import { UserService } from '../../user/user.service'
 
 
@@ -11,6 +10,7 @@ const pdfPath = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
   selector: 'app-article',
   templateUrl: './article.component.html',
   styleUrls: ['./article.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     UserService
   ]
