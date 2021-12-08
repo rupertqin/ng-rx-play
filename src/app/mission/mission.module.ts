@@ -20,7 +20,7 @@ import { UserService } from '../user/user.service'
   ],
   exports: [
     MissionComponent,
-		// MissionAstronautComponent
+		MissionAstronautComponent
   ]
 })
 export class MissionModule { }

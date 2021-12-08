@@ -1,8 +1,6 @@
 import { Component, OnInit, HostListener, Pipe, PipeTransform, ChangeDetectionStrategy } from '@angular/core';
 import * as pdfjsLib from 'pdfjs-dist';
-import { UserService } from '../../user/user.service'
-
-
+import { UserService } from '../user/user.service';
 
 const pdfPath = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
 
