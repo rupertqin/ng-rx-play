@@ -7,6 +7,9 @@ const routes: Routes = [{
 }, {
   path: 'article',
   loadChildren: () => import('./article/article.module').then(m => m.ArticleModule)
+}, {
+  path: 'monaco',
+  loadChildren: () => import('./monaco/monaco.module').then(m => m.MonacoModule)
 }];
 
 @NgModule({
