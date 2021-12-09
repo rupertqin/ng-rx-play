@@ -89,8 +89,12 @@ export class UserComponent implements AfterViewInit {
 
       // https://stackoverflow.com/a/33908969
       editor.on("keyup", (editor, event) => {
+          var __Cursor = editor.getDoc().getCursor();
+          var __Token = editor.getTokenAt(__Cursor);
+
           if (!editor.state.completionActive &&
-              !ExcludedIntelliSenseTriggerKeys[(event.keyCode || event.which).toString()]) {
+              !ExcludedIntelliSenseTriggerKeys[(event.keyCode || event.which).toString()] &&
+              (__Token.type === "tag" || __Token.string !== " ")) {
               CodeMirror.commands.autocomplete(editor, CodeMirror.hint.javascript, { completeSingle: false });
           }
       });
