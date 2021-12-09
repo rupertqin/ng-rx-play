@@ -4,6 +4,7 @@ import { UserService } from '../user/user.service';
 import { fromTextArea, showHint } from 'codemirror';
 import 'codemirror/mode/javascript/javascript.js'
 import 'codemirror/addon/hint/show-hint.js'
+import 'codemirror/addon/hint/javascript-hint.js'
 
 const pdfPath = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
 

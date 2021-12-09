@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, AfterViewInit, ViewChild, ElementRef, Renderer2, ChangeDetectionStrategy } from '@angular/core';
-import { fromTextArea, showHint } from 'codemirror';
+import { fromTextArea, showHint, commands } from 'codemirror';
 import 'codemirror/mode/javascript/javascript.js'
 import 'codemirror/addon/hint/show-hint.js'
 
@@ -29,14 +29,13 @@ export class UserComponent implements AfterViewInit {
       var editor = fromTextArea(this.myTextarea.nativeElement, {
         lineNumbers: true,
         mode: 'javascript',
-        onKeyEvent: function (e, s) {
-          if (s.type == "keyup") {
-            showHint(e);
-          }
-          return false
-        }
       });
       editor.setValue("var a = 'hello world';")
+      editor.on("keyup", function (cm, event) {
+        if (!cm.state.completionActive && event.keyCode !== 13) {
+          commands.autocomplete(cm, () => null, {completeSingle: false});
+        }
+    });
     }
   }
 
