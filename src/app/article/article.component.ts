@@ -1,12 +1,11 @@
-import { Component, AfterViewInit, HostListener, ChangeDetectionStrategy, ViewChild, ElementRef } from '@angular/core';
-import * as pdfjsLib from 'pdfjs-dist';
+import { Component, AfterViewInit, HostListener, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
 import { UserService } from '../user/user.service';
-import { fromTextArea, showHint } from 'codemirror';
+import * as CodeMirror from 'codemirror';
 import 'codemirror/mode/javascript/javascript.js'
 import 'codemirror/addon/hint/show-hint.js'
 import 'codemirror/addon/hint/javascript-hint.js'
+import { EXAMPLE_CODE } from 'src/app/constant'
 
-const pdfPath = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
 
 @Component({
   selector: 'app-article',
@@ -16,6 +15,7 @@ const pdfPath = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
     '../../../node_modules/codemirror/lib/codemirror.css',
     '../../../node_modules/codemirror/addon/hint/show-hint.css',
   ],
+  encapsulation: ViewEncapsulation.ShadowDom,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     UserService
@@ -28,7 +28,6 @@ export class ArticleComponent implements AfterViewInit {
   @ViewChild('myTextarea') myTextarea: ElementRef<HTMLTextAreaElement>|null;
   users = [{ id: 1, name: 'wang' }, { id: 2, name: 'li' }];
   cats = [{ name: 'Tom', userId: 1 }, { name: 'Jerry', userId: 2 }];
-  src = pdfPath;
 
   @HostListener('click')
   clicked() { }
@@ -45,17 +44,11 @@ export class ArticleComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     if (this.myTextarea) {
-      var editor = fromTextArea(this.myTextarea.nativeElement, {
+      var editor = CodeMirror.fromTextArea(this.myTextarea.nativeElement, {
         lineNumbers: true,
         mode: 'javascript',
-        onKeyEvent: function (e, s) {
-          if (s.type == "keyup") {
-            showHint(e);
-          }
-          return false
-        }
       });
-      editor.setValue("var a = 'hello world';")
+      editor.setValue(EXAMPLE_CODE)
     }
   }
 
