@@ -13,6 +13,7 @@ import { EXAMPLE_CODE } from 'src/app/constant'
   styleUrls: [
     './article.component.scss',
     '../../../node_modules/codemirror/lib/codemirror.css',
+    '../../../node_modules/codemirror/theme/monokai.css',
     '../../../node_modules/codemirror/addon/hint/show-hint.css',
   ],
   encapsulation: ViewEncapsulation.ShadowDom,
@@ -47,8 +48,10 @@ export class ArticleComponent implements AfterViewInit {
       var editor = CodeMirror.fromTextArea(this.myTextarea.nativeElement, {
         lineNumbers: true,
         mode: 'javascript',
+        theme: 'monokai',
       });
       editor.setValue(EXAMPLE_CODE)
+      editor.setSize(null, 700)
     }
   }
 
