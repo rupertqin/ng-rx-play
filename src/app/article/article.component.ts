@@ -6,7 +6,6 @@ import 'codemirror/addon/hint/show-hint.js'
 import 'codemirror/addon/hint/javascript-hint.js'
 import { EXAMPLE_CODE } from 'src/app/constant'
 
-
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',
@@ -16,7 +15,7 @@ import { EXAMPLE_CODE } from 'src/app/constant'
     '../../../node_modules/codemirror/theme/monokai.css',
     '../../../node_modules/codemirror/addon/hint/show-hint.css',
   ],
-  encapsulation: ViewEncapsulation.ShadowDom,
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     UserService

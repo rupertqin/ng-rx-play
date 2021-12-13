@@ -57,11 +57,10 @@ var ExcludedIntelliSenseTriggerKeys: Record<string, string> = {
   "222": "quote"
 }
 
-
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  encapsulation: ViewEncapsulation.ShadowDom,
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: [
     './user.component.scss',
