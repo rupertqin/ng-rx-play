@@ -63,9 +63,6 @@ var ExcludedIntelliSenseTriggerKeys: Record<string, string> = {
   templateUrl: './article.component.html',
   styleUrls: [
     './article.component.scss',
-    '../../../node_modules/codemirror/lib/codemirror.css',
-    '../../../node_modules/codemirror/theme/monokai.css',
-    '../../../node_modules/codemirror/addon/hint/show-hint.css',
   ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
