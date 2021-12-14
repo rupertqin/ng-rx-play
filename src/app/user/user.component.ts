@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, AfterViewInit, ViewChild, ElementRef, Renderer2, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewEncapsulation, AfterViewInit, ViewChild, ElementRef, ChangeDetectionStrategy } from '@angular/core';
 import * as CodeMirror from 'codemirror';
 import 'codemirror/mode/javascript/javascript.js'
 import 'codemirror/addon/hint/show-hint.js'
@@ -60,24 +60,17 @@ var ExcludedIntelliSenseTriggerKeys: Record<string, string> = {
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: [
     './user.component.scss',
-    '../../../node_modules/codemirror/lib/codemirror.css',
-    '../../../node_modules/codemirror/addon/hint/show-hint.css',
-  ]
+  ],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserComponent implements AfterViewInit {
-  @ViewChild('myTextarea') myTextarea: ElementRef<HTMLTextAreaElement>|null;
-
-  constructor(private renderer: Renderer2) {
-    this.myTextarea = null;
-  }
+  @ViewChild('myTextarea') myTextarea: ElementRef<HTMLTextAreaElement>|null = null;
   ngOnInit() {
     console.log(this.myTextarea);
   }
-
   ngAfterViewInit(): void {
     if (this.myTextarea) {
       var editor = CodeMirror.fromTextArea(this.myTextarea.nativeElement, {
@@ -106,5 +99,4 @@ export class UserComponent implements AfterViewInit {
       // }
     }
   }
-
 }

@@ -15,7 +15,6 @@ export class MonacoComponent implements OnInit {
   };
   code: string = EXAMPLE_CODE;
 
-
   ngOnInit(): void {
   }
 

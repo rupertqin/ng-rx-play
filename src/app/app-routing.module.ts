@@ -13,6 +13,9 @@ const routes: Routes = [{
 }, {
   path: 'ace',
   loadChildren: () => import('./ace/ace.module').then(m => m.AceModule)
+}, {
+  path: 'codejar',
+  loadChildren: () => import('./codejar/codejar.module').then(m => m.CodejarModule)
 }];
 
 @NgModule({
