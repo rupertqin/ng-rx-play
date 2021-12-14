@@ -1,9 +1,10 @@
 @import 'prismjs/themes/prism.css';
 @import 'prismjs/themes/prism-twilight.css';
+
 .editor {
-	height: calc(100vh - 50px);
-	font-size: 12px!important;
-	border-radius: 6px;
+  height: calc(100vh - 50px);
+  font-size: 12px!important;
+  border-radius: 6px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
   font-family: Consolas, Monaco;
   font-weight: 400;
@@ -11,13 +12,17 @@
   line-height: 20px;
   tab-size: 4;
 }
+
 .token.operator {
-	background: none;
+  background: none;
 }
 
 .codejar-linenumbers {
-	background-color: rgba(39,39,39)!important;
-	mix-blend-mode: normal!important;
-	z-index: 2;
-	padding-top: 16px!important;
+  background-color: rgba(39,39,39)!important;
+  mix-blend-mode: normal!important;
+  z-index: 2;
+  padding-top: 16px!important;
+  text-align: right;
+  padding-right: 5px;
+  box-sizing: border-box;
 }
