@@ -5,7 +5,6 @@ import 'codemirror/mode/javascript/javascript.js'
 import 'codemirror/addon/hint/show-hint.js'
 import 'codemirror/addon/hint/javascript-hint.js'
 import { EXAMPLE_CODE } from 'src/app/constant'
-
 var ExcludedIntelliSenseTriggerKeys: Record<string, string> = {
   "8": "backspace",
   "9": "tab",
@@ -57,7 +56,6 @@ var ExcludedIntelliSenseTriggerKeys: Record<string, string> = {
   "220": "backslash",
   "222": "quote"
 }
-
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',
@@ -77,9 +75,7 @@ export class ArticleComponent implements AfterViewInit {
   @ViewChild('myTextarea') myTextarea: ElementRef<HTMLTextAreaElement>|null;
   users = [{ id: 1, name: 'wang' }, { id: 2, name: 'li' }];
   cats = [{ name: 'Tom', userId: 1 }, { name: 'Jerry', userId: 2 }];
-
   @HostListener('click')
-  clicked() { }
 
   getCat = (userId: number) => {
     console.log('🤪User', userId);
