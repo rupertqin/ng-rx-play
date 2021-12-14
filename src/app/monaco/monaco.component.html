@@ -1,1 +1,6 @@
+<div>
+  <select [(ngModel)]="lang" (ngModelChange)="onLangChange($event)">
+    <option *ngFor="let opt of langs" [value]="opt">{{ opt }}</option>
+  </select>
+</div>
 <ngx-monaco-editor class="editor" [options]="editorOptions" [(ngModel)]="code"></ngx-monaco-editor>

@@ -75,7 +75,6 @@ export class ArticleComponent implements AfterViewInit {
   @ViewChild('myTextarea') myTextarea: ElementRef<HTMLTextAreaElement>|null;
   users = [{ id: 1, name: 'wang' }, { id: 2, name: 'li' }];
   cats = [{ name: 'Tom', userId: 1 }, { name: 'Jerry', userId: 2 }];
-  @HostListener('click')
 
   getCat = (userId: number) => {
     console.log('🤪User', userId);
