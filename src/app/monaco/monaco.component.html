@@ -9,6 +9,7 @@
   </select>
 </div>
 <ngx-monaco-editor
+  *ngIf="!loading"
   class="editor" 
   [options]="editorOptions"
   (onInit)="onMonacoInit($event)"

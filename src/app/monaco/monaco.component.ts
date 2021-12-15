@@ -24,10 +24,19 @@ export class MonacoComponent implements OnInit {
   themes = themes
   code = EXAMPLE_CODE
   editor: any = null
+  loading = false;
+  
 
   onMonacoInit(editor: any) {
     console.log(editor)
     this.editor = editor;
+  }
+
+  reload() {
+    this.loading = true;
+    setTimeout(() => {
+      this.loading = false;
+    }, 0);
   }
 
   get lang() {
@@ -36,6 +45,7 @@ export class MonacoComponent implements OnInit {
   set lang(val: string) {
     this.editorOptions.language = val;
     this.editor?.updateOptions(this.editorOptions)
+    this.reload()
     this.code = codeMap[val]
   }
 
