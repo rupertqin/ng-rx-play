@@ -1,5 +1,5 @@
-export const EXAMPLE_CODE_HTML = `
-<!DOCTYPE html>
+export const EXAMPLE_CODE_HTML =
+`<!DOCTYPE html>
 <html>
 <head>
   <title>Monarch Workbench</title>

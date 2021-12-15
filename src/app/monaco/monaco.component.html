@@ -1,6 +1,15 @@
 <div class="select-lang">
+  lang: 
   <select [(ngModel)]="lang">
     <option *ngFor="let opt of langs" [value]="opt">{{ opt }}</option>
   </select>
+  theme: 
+  <select [(ngModel)]="theme">
+    <option *ngFor="let opt of themes" [value]="opt">{{ opt }}</option>
+  </select>
 </div>
-<ngx-monaco-editor class="editor" [options]="editorOptions" [(ngModel)]="code"></ngx-monaco-editor>
+<ngx-monaco-editor
+  class="editor" 
+  [options]="editorOptions"
+  (onInit)="onMonacoInit($event)"
+  [(ngModel)]="code"></ngx-monaco-editor>
