@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { EXAMPLE_CODE_HTML } from './constant'
 import { EXAMPLE_CODE } from 'src/app/constant'
 const langs = ['html', 'javascript'];
+
+const codeMap = {
+  [langs[0]]: EXAMPLE_CODE_HTML,
+  [langs[1]]: EXAMPLE_CODE,
+}
 @Component({
   selector: 'app-monaco',
   templateUrl: './monaco.component.html',
@@ -10,14 +15,17 @@ const langs = ['html', 'javascript'];
 export class MonacoComponent implements OnInit {
   editorOptions = {
     theme: 'vs-dark', 
-    language: 'javascript'
+    language: langs[1]
   }
-  lang = langs[1];
   langs = langs
-  code: string = EXAMPLE_CODE
+  code = EXAMPLE_CODE
 
-  onLangChange(val: string) {
-     this.editorOptions.language = val;
+  get lang() {
+    return this.editorOptions.language;
+  }
+  set lang(val: string) {
+    this.editorOptions.language = val;
+    this.code = codeMap[val]
   }
 
   ngOnInit(): void {
