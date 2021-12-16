@@ -4,7 +4,10 @@ import * as CodeMirror from 'codemirror';
 import 'codemirror/mode/javascript/javascript.js'
 import 'codemirror/addon/hint/show-hint.js'
 import 'codemirror/addon/hint/javascript-hint.js'
+import 'codemirror/addon/lint/lint.js'
+import 'codemirror/addon/lint/javascript-lint.js'
 import { EXAMPLE_CODE } from 'src/app/constant'
+
 var ExcludedIntelliSenseTriggerKeys: Record<string, string> = {
   "8": "backspace",
   "9": "tab",
@@ -50,7 +53,7 @@ var ExcludedIntelliSenseTriggerKeys: Record<string, string> = {
   "187": "equalsign",
   "188": "comma",
   "189": "dash",
-  "190": "period",
+  // "190": "period",
   "191": "slash",
   "192": "graveaccent",
   "220": "backslash",
@@ -92,6 +95,8 @@ export class ArticleComponent implements AfterViewInit {
         lineNumbers: true,
         mode: 'javascript',
         theme: 'monokai',
+        gutters: ["CodeMirror-lint-markers"],
+        lint: true
       });
       editor.setValue(EXAMPLE_CODE)
       editor.setSize(null, 700)
@@ -100,6 +105,7 @@ export class ArticleComponent implements AfterViewInit {
         var __Cursor = editor.getDoc().getCursor();
         var __Token = editor.getTokenAt(__Cursor);
 
+        debugger
         if (!editor.state.completionActive &&
             !ExcludedIntelliSenseTriggerKeys[(event.keyCode || event.which).toString()] &&
             (__Token.type === "tag" || __Token.string !== " ")) {

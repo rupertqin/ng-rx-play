@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 // import { editor } from 'monaco-editor';
-import { EXAMPLE_CODE_HTML } from './constant'
+import { EXAMPLE_CODE_HTML, EXAMPLE_CODE_TYPESCRIPT } from './constant'
 import { MonacoEditorModule, EditorComponent } from 'ngx-monaco-editor'
 import { EXAMPLE_CODE } from 'src/app/constant'
-const langs = ['html', 'javascript'];
+const langs = ['html', 'javascript', 'typescript'];
 const themes = ['vs-dark', 'vs-light'];
 
 const codeMap = {
   [langs[0]]: EXAMPLE_CODE_HTML,
   [langs[1]]: EXAMPLE_CODE,
+  [langs[2]]: EXAMPLE_CODE_TYPESCRIPT,
 }
 @Component({
   selector: 'app-monaco',

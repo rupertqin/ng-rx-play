@@ -28,3 +28,51 @@ export const EXAMPLE_CODE_HTML =
 </body>
 </html>
 `
+
+export const EXAMPLE_CODE_TYPESCRIPT =
+`enum CompassDirection {
+  North,
+  East,
+  South,
+  West,
+}
+
+enum StatusCodes {
+  OK = 200,
+  BadRequest = 400,
+  Unauthorized,
+  PaymentRequired,
+  Forbidden,
+  NotFound,
+}
+
+const endDirection = CompassDirection.None;
+
+const startingDirection = CompassDirection.East;
+const currentStatus = StatusCodes.OK;
+
+const okNumber = StatusCodes.OK;
+const okNumberIndex = StatusCodes["OK"];
+const stringBadRequest = StatusCodes[400];
+
+enum GamePadInput {
+  Up = "UP",
+  Down = "DOWN",
+  Left = "LEFT",
+  Right = "RIGHT",
+}
+
+const enum MouseAction {
+  MouseDown,
+  MouseUpOutside,
+  MouseUpInside,
+}
+
+const handleMouseAction = (action: MouseAction) => {
+  switch (action) {
+    case MouseAction.MouseDown:
+      console.log("Mouse Down");
+      break;
+  }
+};
+`

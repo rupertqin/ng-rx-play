@@ -1,5 +1,5 @@
-export const EXAMPLE_CODE_ANGULAR: string = `
-import { Injectable } from '@angular/core';
+export const EXAMPLE_CODE_ANGULAR: string = 
+`import { Injectable } from '@angular/core';
 import { Subject, Observable, Subscriber } from 'rxjs';
 
 @Injectable()
@@ -34,9 +34,8 @@ export class MissionService {
 }
 `;
 
-export const EXAMPLE_CODE: string = `
-
-'use strict'
+export const EXAMPLE_CODE: string = 
+`'use strict'
 
 /**
  * Module dependencies.
@@ -55,6 +54,14 @@ const Stream = require('stream')
 const http = require('http')
 const only = require('only')
 const { HttpError } = require('http-errors')
+
+num = 3;
+
+a = new Promise(resol => {
+    resolve(resolve)
+});
+
+b = num + 4;
 
 /**
  * Expose \`Application\` class.
