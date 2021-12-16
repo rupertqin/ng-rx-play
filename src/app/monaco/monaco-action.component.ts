@@ -26,6 +26,8 @@ const codeMap = {
     <select [(ngModel)]="theme">
       <option *ngFor="let opt of themes" [value]="opt">{{ opt }}</option>
     </select>
+    <button (click)="foldAll()">foldAll</button>
+    <button (click)="unfoldAll()">unfoldAll</button>
   </div>
   <ngx-monaco-editor
     *ngIf="!loading"
@@ -61,7 +63,7 @@ export class MonacoActionComponent implements OnInit {
   loading = false;
 
   onMonacoInit(editor: any) {
-    console.log(editor)
+    console.log('monaco editor: ', editor)
     this.editor = editor;
   }
 
@@ -70,6 +72,14 @@ export class MonacoActionComponent implements OnInit {
     setTimeout(() => {
       this.loading = false;
     }, 0);
+  }
+
+  foldAll() {
+    this.editor._actions['editor.foldAll']._run();
+  }
+
+  unfoldAll() {
+    this.editor._actions['editor.unfoldAll']._run();
   }
 
   get lang() {
