@@ -66,7 +66,7 @@ num + \\/[\\d]/g + 2;
 a = new Promise(resol => {
     resolve(new num())
 });
-b = num + 4;
+b = num. + 4;
 var widgets = []
 function updateHints() {
   editor.operation(function(){

@@ -91,6 +91,6 @@ export class MonacoActionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.lang = Langs.Html
+    this.lang = Langs.Javascript
   }
 }
