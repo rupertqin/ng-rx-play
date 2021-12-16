@@ -55,12 +55,15 @@ const http = require('http')
 const only = require('only')
 const { HttpError } = require('http-errors')
 
+/**
+ * Error code
+ */
 num = 3;
-
+num + 2;
+num + \\/[\\d]/g + 2;
 a = new Promise(resol => {
     resolve(resolve)
 });
-
 b = num + 4;
 
 /**

@@ -96,8 +96,10 @@ export class ArticleComponent implements AfterViewInit {
         mode: 'javascript',
         theme: 'monokai',
         gutters: ["CodeMirror-lint-markers"],
-        lint: true
-      });
+        lint: {
+          esversion: 6
+        }
+      } as any);
       editor.setValue(EXAMPLE_CODE)
       editor.setSize(null, 700)
       // https://stackoverflow.com/a/33908969
@@ -105,7 +107,6 @@ export class ArticleComponent implements AfterViewInit {
         var __Cursor = editor.getDoc().getCursor();
         var __Token = editor.getTokenAt(__Cursor);
 
-        debugger
         if (!editor.state.completionActive &&
             !ExcludedIntelliSenseTriggerKeys[(event.keyCode || event.which).toString()] &&
             (__Token.type === "tag" || __Token.string !== " ")) {
