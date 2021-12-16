@@ -1,6 +1,6 @@
-.select-lang {
-  margin-bottom: 1em;
-}
-.editor {
-	height: 100vh;
+:host {
+  display: flex;
+  > app-monaco-action {
+    flex: 1;
+  }
 }

@@ -97,7 +97,7 @@ export class ArticleComponent implements AfterViewInit {
         theme: 'monokai',
         gutters: ["CodeMirror-lint-markers"],
         lint: {
-          esversion: 6
+          esversion: 10
         }
       } as any);
       editor.setValue(EXAMPLE_CODE)
