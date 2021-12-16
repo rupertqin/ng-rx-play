@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-// import { editor } from 'monaco-editor';
 import { EXAMPLE_CODE_HTML, EXAMPLE_CODE_TYPESCRIPT } from './constant'
-import { MonacoEditorModule, EditorComponent } from 'ngx-monaco-editor'
 import { EXAMPLE_CODE } from 'src/app/constant'
-const langs = ['html', 'javascript', 'typescript'];
 const themes = ['vs-dark', 'vs-light'];
 
+enum Langs {
+  Html = 'html',
+  Javascript = 'javascript',
+  Typescript = 'typescript',
+}
+
 const codeMap = {
-  [langs[0]]: EXAMPLE_CODE_HTML,
-  [langs[1]]: EXAMPLE_CODE,
-  [langs[2]]: EXAMPLE_CODE_TYPESCRIPT,
+  [Langs.Html]: EXAMPLE_CODE_HTML,
+  [Langs.Javascript]: EXAMPLE_CODE,
+  [Langs.Typescript]: EXAMPLE_CODE_TYPESCRIPT,
 }
 @Component({
   selector: 'app-monaco-action',
@@ -49,14 +52,13 @@ const codeMap = {
 export class MonacoActionComponent implements OnInit {
   editorOptions = {
     theme: themes[0], 
-    language: langs[1]
+    language: Langs.Javascript
   }
-  langs = langs
+  langs = Object.values(Langs) .filter((value) => typeof value === "string") .map((value) => value);
   themes = themes
   code = EXAMPLE_CODE
   editor: any = null
   loading = false;
-  
 
   onMonacoInit(editor: any) {
     console.log(editor)
@@ -73,7 +75,7 @@ export class MonacoActionComponent implements OnInit {
   get lang() {
     return this.editorOptions.language;
   }
-  set lang(val: string) {
+  set lang(val: Langs) {
     this.editorOptions.language = val;
     this.editor?.updateOptions(this.editorOptions)
     this.reload()
@@ -89,6 +91,6 @@ export class MonacoActionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.lang = langs[0]
+    this.lang = Langs.Html
   }
 }
