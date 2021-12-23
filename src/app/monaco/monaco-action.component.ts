@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { EXAMPLE_CODE_HTML, EXAMPLE_CODE_TYPESCRIPT } from './constant'
 import { EXAMPLE_CODE } from 'src/app/constant'
 const themes = ['vs-dark', 'vs-light'];
@@ -17,7 +17,8 @@ const codeMap = {
 @Component({
   selector: 'app-monaco-action',
   template: `
-    <div class="select-lang">
+  <div #editorEl class="editor-monaco"><div>
+  <div class="select-lang">
     lang: 
     <select [(ngModel)]="lang">
       <option *ngFor="let opt of langs" [value]="opt">{{ opt }}</option>
@@ -28,6 +29,7 @@ const codeMap = {
     </select>
     <button (click)="foldAll()">foldAll</button>
     <button (click)="unfoldAll()">unfoldAll</button>
+    <button (click)="test()">test</button>
   </div>
   <ngx-monaco-editor
     *ngIf="!loading"
@@ -49,9 +51,13 @@ const codeMap = {
     .editor {
     	height: 100vh;
     }
+    .editor-monaco {
+      width: 100%;
+      height: 400px;
+    }
   `]
 })
-export class MonacoActionComponent implements OnInit {
+export class MonacoActionComponent implements AfterViewInit {
   editorOptions = {
     theme: themes[0], 
     language: Langs.Javascript
@@ -61,6 +67,8 @@ export class MonacoActionComponent implements OnInit {
   code = EXAMPLE_CODE
   editor: any = null
   loading = false;
+
+  @ViewChild('editorEl') editorEl: ElementRef|null = null
 
   onMonacoInit(editor: any) {
     console.log('monaco editor: ', editor)
@@ -80,6 +88,10 @@ export class MonacoActionComponent implements OnInit {
 
   unfoldAll() {
     this.editor._actions['editor.unfoldAll']._run();
+  }
+
+  test() {
+    this.editor._actions['editor.action.wordHighlight.next']._run();
   }
 
   get lang() {
@@ -102,5 +114,16 @@ export class MonacoActionComponent implements OnInit {
 
   ngOnInit(): void {
     this.lang = Langs.Javascript
+  }
+
+  ngAfterViewInit(): void {
+    // setTimeout(()=> {
+    //   console.log('window.monaco', (window as any).monaco)
+    //   const a =  (window as any).monaco.editor.create(this.editorEl?.nativeElement, {
+    //     value: ['function x() {', '\tconsole.log("Hello world!");', '}'].join('\n'),
+  	// 		language: 'typescript'
+    //   })
+    //   console.log('a', a)
+    // }, 500)
   }
 }

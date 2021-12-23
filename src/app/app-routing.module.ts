@@ -16,10 +16,19 @@ const routes: Routes = [{
 }, {
   path: 'codejar',
   loadChildren: () => import('./codejar/codejar.module').then(m => m.CodejarModule)
+}, {
+  path: 'anchor',
+  loadChildren: () => import('./anchor/anchor.module').then(m => m.AnchorModule)
+}, {
+  path: 'nz-monaco',
+  loadChildren: () => import('./nz-monaco/nz-monaco.module').then(m => m.NzMonacoModule)
 }];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    scrollPositionRestoration: 'enabled',
+    anchorScrolling: 'enabled'
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
