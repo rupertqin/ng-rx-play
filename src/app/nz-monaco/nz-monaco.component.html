@@ -1,5 +1,7 @@
 <nz-code-editor 
+  *ngIf="!loading"
   class="editor" 
-  [ngModel]="code" 
-  [nzEditorOption]="{ language: 'typescript', theme: 'vs-dark' }"
+  [ngModel]="code"
+  (nzEditorInitialized)="onEditorInit($event)"
+  [nzEditorOption]="editorOption"
 ></nz-code-editor>

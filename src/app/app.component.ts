@@ -36,7 +36,8 @@ export class AppComponent implements OnInit {
         console.log('code editor onLoad')
       },
       onInit() {
-        console.log('code editor onInit')
+        console.log('code editor onInit', (window as any).monaco)
+
       }
     })
   }
