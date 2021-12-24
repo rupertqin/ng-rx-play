@@ -1,20 +1,31 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, ViewEncapsulation } from '@angular/core';
 
 
 @Component({
   selector: 'app-nz-monaco',
   templateUrl: './nz-monaco.component.html',
-  styleUrls: ['./nz-monaco.component.scss']
+  styleUrls: ['./nz-monaco.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class NzMonacoComponent implements AfterViewInit {
-  code = ` import { net }  from "http"
+  code =
+`import { net }  from "http"
 const a = 889
 
+[2020 12 25 16:44]
+[error]
+a = {
+	money: {money$$1J7A$$},
+  code: {fromCode$$07X1$$},
+  cat: {cat$$07X1$$},
+}
+{money$$1J7A$$}{cat$$07X1$$}{fromCode$$07X1$$}
 b = \`\${x}\`
 a = {
     name: 'tom'
 }
 `
+
   editorOption = { 
     language: 'javascript', 
     theme: 'vs-dark' 
@@ -69,12 +80,12 @@ a = {
         // The main tokenizer for our languages
         tokenizer: {
           root: [
+            [/\[error\]/, 'custom-error'],
+            [/\[notice.*/, 'custom-notice'],
+            [/\{money\$\$1J7A\$\$\}|\{fromCode\$\$07X1\$\$\}/, 'custom-info'],
+            [/\[[a-zA-Z\s0-9:]+\]/, 'custom-date'],
             [/[{}]/, 'delimiter.bracket'],
             { include: 'common' },
-            [/\[error.*/, 'custom-error'],
-            [/\[notice.*/, 'custom-notice'],
-            [/\[info.*/, 'custom-info'],
-            [/\[[a-zA-Z 0-9:]+\]/, 'custom-date'],
           ],
 
           common: [
@@ -194,16 +205,34 @@ a = {
         },
       });
 
+      monaco.languages.registerCompletionItemProvider('myCustomLanguage', {
+        provideCompletionItems() {
+          return {
+            suggestions: [{
+              label: '{money$$1J7A$$}',
+              kind: monaco.languages.CompletionItemKind.Enum,
+              insertText: '{money$$1J7A$$}',
+              detail: 'qf.details. ....'
+            }]
+          }
+        },
+        // triggerCharacters: ['.']
+      })
+
       // Define a new theme that constains only rules that match this language
       monaco.editor.defineTheme('myCoolTheme', {
-        colors: {},
-        base: 'vs-dark',
+        colors: {
+          'editor.foreground': '#f21bff',
+          "editor.background": "#f2fbf4",
+          "editor.selectionBackground": "#3e1fe5",
+        },
+        base: 'vs',
         inherit: true,
         rules: [
-          { token: 'custom-info', foreground: '808080' },
-          { token: 'custom-error', foreground: 'ff0000', fontStyle: 'bold' },
+          { token: 'custom-info', foreground: '3da3bb' },
+          { token: 'custom-error', foreground: 'ff0000', background: 'ff1100', fontStyle: 'bold' },
           { token: 'custom-notice', foreground: 'FFA500' },
-          { token: 'custom-date', foreground: '008800' },
+          { token: 'custom-date', background: 'ff1100', foreground: '008800', fontStyle: 'italic underline' },
         ]
       });
 
