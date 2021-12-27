@@ -1,7 +1,25 @@
+<form [formGroup]="monacoForm">
+  <ul formArrayName="names">
+    <li *ngFor="let name of names.controls; let i=index">
+      <input type="text" id="name-{{ i }}" [formControlName]="i" />
+    </li>
+  </ul>
+</form>
+<div>
+  <button (click)="addName()"> add Name</button>
+</div>
+<div>
+  <button (click)="reloadSetting()"> reloadSetting</button>
+</div>
+
+
 <nz-code-editor 
   *ngIf="!loading"
   class="editor" 
   [ngModel]="code"
   (nzEditorInitialized)="onEditorInit($event)"
   [nzEditorOption]="editorOption"
-></nz-code-editor>
+>
+</nz-code-editor>
+
+<!-- <app-profile-editor></app-profile-editor> -->
