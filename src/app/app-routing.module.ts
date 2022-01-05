@@ -22,6 +22,9 @@ const routes: Routes = [{
 }, {
   path: 'nz-monaco',
   loadChildren: () => import('./nz-monaco/nz-monaco.module').then(m => m.NzMonacoModule)
+}, {
+  path: 'todos',
+  loadChildren: () => import('./todos/todos.module').then(m => m.TodosModule)
 }];
 
 @NgModule({
