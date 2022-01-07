@@ -1,1 +1,9 @@
-<p>todos works!</p>
+<div>
+  <button (click)="changeAllItemName()"> changeItemName </button>
+</div>
+
+<input [(ngModel)]="name" type="text" />
+<button (click)="add()">add</button>
+<div *ngFor="let item of items;let i = index">
+  <app-todos-item [data]="item" (removeEvent)="remove(i)" (renameEvent)="rename()"></app-todos-item>
+</div>
