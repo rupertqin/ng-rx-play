@@ -5,5 +5,8 @@
 <input [(ngModel)]="name" type="text" />
 <button (click)="add()">add</button>
 <div *ngFor="let item of items;let i = index">
-  <app-todos-item [data]="item" (removeEvent)="remove(i)" (renameEvent)="rename()"></app-todos-item>
+  <app-todos-item [data]="item" (removeEvent)="remove(i)" (renameEvent)="rename(item, $event)"></app-todos-item>
+</div>
+<div *ngFor="let item of items;let i = index">
+  <app-todos-item [data]="item" (removeEvent)="remove(i)" (renameEvent)="rename(item, $event)"></app-todos-item>
 </div>

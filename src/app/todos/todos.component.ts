@@ -27,8 +27,8 @@ export class TodosComponent implements OnInit {
     this.items.splice(index, 1);
   }
 
-  rename() {
-
+  rename(item: TodoItem, name: string) {
+    item.name = name 
   }
 
   changeAllItemName() {

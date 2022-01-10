@@ -11,7 +11,7 @@ import { TodoItem } from './constant'
   styles: [`
   
   `],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class TodosItemComponent implements OnInit {
   constructor(private cdr: ChangeDetectorRef) { }
@@ -41,6 +41,11 @@ export class TodosItemComponent implements OnInit {
 
   changeName() {
     // this.data.name = 'Changed'
+    // this.data = {
+    //     name: 'Changed'
+    // }
+    
+    this.renameEvent.emit('Changed')
   }
 
 }
