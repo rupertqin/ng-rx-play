@@ -1,4 +1,4 @@
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { NzConfigService } from 'ng-zorro-antd/core/config';
 
@@ -13,7 +13,8 @@ import { UserService } from './user/user.service'
   styleUrls: ['./app.component.scss'],
   providers: [
     UserService
-  ]
+  ],
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
   color = '';

@@ -25,6 +25,9 @@ const routes: Routes = [{
 }, {
   path: 'todos',
   loadChildren: () => import('./todos/todos.module').then(m => m.TodosModule)
+}, {
+  path: 'template-expression',
+  loadChildren: () => import('./template-expression/template-expression.module').then(m => m.TemplateExpressionModule)
 }];
 
 @NgModule({
