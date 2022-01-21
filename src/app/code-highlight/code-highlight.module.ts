@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CodeHighlightRoutingModule } from './code-highlight-routing.module';
-import { CodeHighlightComponent } from './code-highlight.component';
-import { PrismModule } from '../prism/prism.module';
+
+import { SharedModule } from '../shared/shared.module'
+import { CodeHighlightComponent } from './code-highlight.component'
 
 @NgModule({
   declarations: [
@@ -12,9 +13,9 @@ import { PrismModule } from '../prism/prism.module';
   imports: [
     CommonModule,
     CodeHighlightRoutingModule,
-    PrismModule,
+    SharedModule,
   ],
   exports: [
-  ]
+  ],
 })
 export class CodeHighlightModule { }

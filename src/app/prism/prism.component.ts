@@ -1,5 +1,11 @@
 import { AfterViewInit, Component, ElementRef, Input, OnChanges, ViewChild, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import * as Prism from 'prismjs';
+import 'prismjs/components/prism-javascript';
+import 'prismjs/components/prism-yaml';
+import 'prismjs/components/prism-scss';
+import 'prismjs/components/prism-css';
+import 'prismjs/components/prism-json';
+import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
 
 @Component({
   selector: 'app-prism',
