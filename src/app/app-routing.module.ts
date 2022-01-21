@@ -28,6 +28,9 @@ const routes: Routes = [{
 }, {
   path: 'template-expression',
   loadChildren: () => import('./template-expression/template-expression.module').then(m => m.TemplateExpressionModule)
+}, {
+  path: 'code-highlight',
+  loadChildren: () => import('./code-highlight/code-highlight.module').then(m => m.CodeHighlightModule)
 }];
 
 @NgModule({

@@ -26,7 +26,7 @@
     "ng2-pdf-viewer": "^7.0.1",
     "ngx-monaco-editor": "^12.0.0",
     "pdfjs-dist": "^2.10.377",
-    "prismjs": "^1.25.0",
+    "prismjs": "^1.26.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
