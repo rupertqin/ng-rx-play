@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { PrismModule } from '../prism/prism.module'
+import { PrismComponent } from './prism.component'
 
 @NgModule({
-  declarations: [],
+  declarations: [PrismComponent],
   imports: [
     CommonModule,
   ],
-  exports: [PrismModule],
+  exports: [PrismComponent],
 })
-export class SharedModule { }
+export class PrismModule { }
