@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnChanges, SimpleChanges, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-template-expression-item',
@@ -8,7 +8,7 @@ import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core
         <button (click)="changeName()"> change name </button>
       </div>
       <div>
-        FullNamePipe: {{ name | fullname: familyName }}
+        FullNamePipe: {{ name | fullname: data.familyName }}
       </div>
       <div>
         getterFullName: {{ getterFullName }}
@@ -16,38 +16,57 @@ import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core
       <div>
         Child full name: {{ fullName() }}
       </div>
+      <div>
+        <input type="text" [(ngModel)]="data.familyName" (ngModelChange)="onNameChange($event)">
+      </div>
+      <div>
+        data: <input type="text" [(ngModel)]="data.familyName">
+      </div>
+      <div>
+        _data: <input type="text" [(ngModel)]="_data.dd">
+      </div>
     </div>
   `,
   styles: [
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TemplateExpressionItemComponent implements OnInit {
+export class TemplateExpressionItemComponent implements OnChanges {
   constructor() { }
 
-  @Input()
-  familyName = ''
+  @Input() familyName: string = ''
+
+  @Input() 
+  data: any = {
+    dd: 'dd'
+  };
 
   name = 'Tom'
 
+  _data: any = {}
+
   fullName() {
     console.log('fullName')
-    return `${this.name} ${this.familyName}`
+    return `${this.name} ${this.data.familyName}`
   }
 
   changeName() {
     this.name = 'Sam';
   }
 
+  onNameChange(val: string) {
+    // this.data.familyName = val;
+  }
+
   get getterFullName() {
     console.log('getterFullName')
     this.heavyDealing()
-    return `${this.name} ${this.familyName}`
+    return `${this.name} ${this.data.familyName}`
   }
 
   heavyDealing() {
     let b = '';
-    for(let i = 0; i < 1000000000; i++) {
+    for(let i = 0; i < 1000000; i++) {
       if (i<40) {
         b = 'small'
       } else {
@@ -56,7 +75,11 @@ export class TemplateExpressionItemComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges): void {
+    debugger
+    if (changes.familyName) {
+      console.log(changes.familyName.currentValue)
+    }
   }
 
 }

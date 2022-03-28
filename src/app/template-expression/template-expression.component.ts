@@ -17,15 +17,30 @@ export class TemplateExpressionComponent implements OnChanges, AfterViewInit {
     // }, 3000)
   }
   familyName = ''
+
+  _data = {
+    familyName: ''
+  }
+
+  // getter 传值到子组件，子组件的 ngModel 不能改值
+  get data() {
+    return this._data;
+    return {
+      familyName: this.familyName,
+    }
+  }
+  // data = {
+  //   familyName: ''
+  // }
   
   ngOnInit(): void {
     // 这里能触发变化
     // this.familyName = 'Birkin'
 
-    // setTimeout(() => {
-    //   // 这里不能能触发变化
-    //   this.familyName = 'Birkin latter'
-    // }, 3000)
+    setTimeout(() => {
+      // 这里不能能触发变化
+      this.familyName = 'Birkin latter'
+    }, 3000)
   }
 
   ngAfterViewInit(): void {
@@ -33,11 +48,11 @@ export class TemplateExpressionComponent implements OnChanges, AfterViewInit {
     // ChangeDetectionStrategy.Default: 同步mutate 会报错： ExpressionChangedAfterItHasBeenCheckedError
     // this.familyName = 'Birkin view'
 
-    setTimeout(() => {
-      // 这里不能能触发变化
-      this.familyName = 'Birkin view latter'
-      this.changeDetectorRef.detectChanges()
-    }, 3000)
+    // setTimeout(() => {
+    //   // 这里不能能触发变化
+    //   this.familyName = 'Birkin view latter'
+    //   this.changeDetectorRef.detectChanges()
+    // }, 3000)
       
   }
 

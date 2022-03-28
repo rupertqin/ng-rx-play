@@ -80,7 +80,6 @@ export class CodeHighlightComponent {
       "key": 99,
       "value": "yu"
     }]
-  }
-    `;
+  }`;
 
 }
