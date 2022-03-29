@@ -31,6 +31,9 @@ const routes: Routes = [{
 }, {
   path: 'code-highlight',
   loadChildren: () => import('./code-highlight/code-highlight.module').then(m => m.CodeHighlightModule)
+}, {
+  path: 'ngmodel',
+  loadChildren: () => import('./ngmodel/ngmodel.module').then(m => m.NgmodelModule)
 }];
 
 @NgModule({
