@@ -34,6 +34,9 @@ const routes: Routes = [{
 }, {
   path: 'ngmodel',
   loadChildren: () => import('./ngmodel/ngmodel.module').then(m => m.NgmodelModule)
+}, {
+  path: 'dynamic-component',
+  loadChildren: () => import('./dynamic-component/dynamic-component.module').then(m => m.DynamicComponentModule)
 }];
 
 @NgModule({
