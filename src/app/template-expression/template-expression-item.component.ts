@@ -76,7 +76,6 @@ export class TemplateExpressionItemComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    debugger
     if (changes.familyName) {
       console.log(changes.familyName.currentValue)
     }

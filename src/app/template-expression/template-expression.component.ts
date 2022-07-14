@@ -32,7 +32,7 @@ export class TemplateExpressionComponent implements OnChanges, AfterViewInit {
   // data = {
   //   familyName: ''
   // }
-  
+
   ngOnInit(): void {
     // 这里能触发变化
     // this.familyName = 'Birkin'
@@ -53,17 +53,20 @@ export class TemplateExpressionComponent implements OnChanges, AfterViewInit {
     //   this.familyName = 'Birkin view latter'
     //   this.changeDetectorRef.detectChanges()
     // }, 3000)
-      
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    debugger
     console.log('changes: ', changes.familyName)
   }
 
   changeName() {
     this.familyName = 'Click'
     console.log('parent click')
+  }
+
+  get msg() {
+    return this.familyName;
   }
 
 }

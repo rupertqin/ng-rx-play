@@ -10,12 +10,14 @@ import { UnlessDirective } from './directives/unless.directive';
 
 import { MissionModule } from './mission/mission.module';
 import { MissionService } from './mission/mission.service';
+import { RxComponent } from './rx/rx.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HighlightDirective,
     UnlessDirective,
+    RxComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,11 @@
+
+.tool {
+  text-indent: -2em;
+  position: relative;
+  &::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: 'loading...';
+  }
+}
