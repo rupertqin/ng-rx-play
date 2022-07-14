@@ -40,6 +40,9 @@ const routes: Routes = [{
 }, {
   path: 'dynamic-component',
   loadChildren: () => import('./dynamic-component/dynamic-component.module').then(m => m.DynamicComponentModule)
+}, {
+  path: 'di',
+  loadChildren: () => import('./di/di.module').then(m => m.DiModule)
 }];
 
 @NgModule({
