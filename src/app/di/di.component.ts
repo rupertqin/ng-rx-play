@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { HeroService } from '../heroes/hero.service';
+
 @Component({
   selector: 'app-di',
   templateUrl: './di.component.html',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DiComponent implements OnInit {
 
-  constructor() { }
+  constructor(private heroService: HeroService) { }
+
+  add() {
+    console.log(this.heroService.getNum());
+  }
 
   ngOnInit(): void {
   }

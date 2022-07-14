@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
+import { HeroService } from '../heroes/hero.service';
 
 @Component({
   selector: 'app-rx',
@@ -8,7 +9,10 @@ import { Observable } from 'rxjs';
 })
 export class RxComponent implements OnInit {
 
-  constructor() { }
+  constructor(private heroService: HeroService) { }
+  add() {
+    console.log(this.heroService.getNum());
+  }
 
   ngOnInit(): void {
     let sub;
@@ -22,7 +26,7 @@ export class RxComponent implements OnInit {
     // }).then(data => {
     //   debugger
     // })
-    
+
     const observable = new Observable(subscriber => {
       sub = subscriber;
       subscriber.next(1);
@@ -87,12 +91,12 @@ export class RxComponent implements OnInit {
     document.addEventListener('click', () => console.log('Clicked!'));
 
 
-    
+
 
     // setTimeout(() =>{
     //   debugger
     // }, 0);
-    
+
   }
 
 }
