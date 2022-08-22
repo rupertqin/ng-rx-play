@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 @Injectable()
-export class UserService {
+export class InfoService {
   constructor(private t: Title) {
 
   }

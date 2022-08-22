@@ -3,6 +3,7 @@ import { MissionService } from './mission.service';
 import { Subject, Subscription } from 'rxjs';
 
 import { UserService } from '../user/user.service'
+import { BetterUserService } from '../user/better-user.service'
 
 
 @Component({
@@ -11,7 +12,7 @@ import { UserService } from '../user/user.service'
   styleUrls: ['./mission.component.scss'],
   providers: [
     MissionService,
-    // UserService
+    {provide: BetterUserService, useExisting: UserService},
   ]
 })
 export class MissionComponent implements OnInit {
@@ -26,7 +27,7 @@ export class MissionComponent implements OnInit {
   private unsubscribe$ = new Subject();
   private subscriptionList: Subscription[] = [];
 
-  constructor(private missionService: MissionService, private userService: UserService) {
+  constructor(private missionService: MissionService, private userService: BetterUserService) {
     missionService.missionConfirmed$.subscribe(
       astronaut => {
         this.history.push(`${astronaut} confirmed the mission`);

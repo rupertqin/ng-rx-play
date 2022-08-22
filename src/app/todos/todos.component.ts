@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { UserService } from '../user/user.service'
 import { TodoItem } from './constant'
 
 @Component({
@@ -8,7 +9,9 @@ import { TodoItem } from './constant'
 })
 export class TodosComponent implements OnInit {
 
-  constructor(private cdr: ChangeDetectorRef) { }
+  constructor(private cdr: ChangeDetectorRef, private userService: UserService) {
+
+  }
 
   items: TodoItem[] = []
   name = ''
@@ -28,10 +31,11 @@ export class TodosComponent implements OnInit {
   }
 
   rename(item: TodoItem, name: string) {
-    item.name = name 
+    item.name = name
   }
 
   changeAllItemName() {
+    this.userService.changeTitle();
     this.items.map(item => item.name = 'Changed')
     this.cdr.checkNoChanges()
   }

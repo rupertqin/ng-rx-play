@@ -2,7 +2,6 @@ import { Component, Injectable, OnInit, ChangeDetectionStrategy } from '@angular
 import { Title } from '@angular/platform-browser';
 import { NzConfigService } from 'ng-zorro-antd/core/config';
 
-import { UserService } from './user/user.service'
 
 
 
@@ -12,20 +11,14 @@ import { UserService } from './user/user.service'
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   providers: [
-    UserService
   ],
-  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
   color = '';
-  constructor(private t: Title, private userService: UserService, private readonly nzConfigService: NzConfigService) {
+  constructor(private t: Title, private readonly nzConfigService: NzConfigService) {
 
   }
   currTitle = 'ng-app';
-
-  changeTitle() {
-    this.userService.changeTitle()
-  }
 
   ngOnInit(): void {
     this.nzConfigService.set('codeEditor', {
@@ -38,7 +31,6 @@ export class AppComponent implements OnInit {
       },
       onInit() {
         console.log('code editor onInit', (window as any).monaco)
-
       }
     })
   }

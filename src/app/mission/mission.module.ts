@@ -4,12 +4,12 @@ import { CommonModule } from '@angular/common';
 import { MissionComponent } from './mission.component';
 import { MissionAstronautComponent } from './mission-astronaut.component';
 import { MissionService } from './mission.service';
-import { UserService } from '../user/user.service'
+import { InfoService } from '../user/info.service'
 
 @NgModule({
 	providers: [
 		MissionService,
-		// UserService
+		InfoService
 	],
   imports: [
     CommonModule
