@@ -24,7 +24,7 @@ import { RxComponent } from './rx/rx.component';
     BrowserModule,
     AppRoutingModule,
     // PdfViewerModule,
-    MissionModule,
+    MissionModule.forChild({name: 778899}),
   ],
   providers: [
     // MissionService

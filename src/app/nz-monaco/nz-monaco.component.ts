@@ -28,9 +28,9 @@ a = {
 }
 `
 
-  editorOption = { 
-    language: 'javascript', 
-    theme: 'vs-dark' 
+  editorOption = {
+    language: 'javascript',
+    theme: 'vs-dark'
   }
   loading = false
   editor: any = null
@@ -101,7 +101,7 @@ a = {
           // [/\{money\$\$1J7A\$\$\}|\{fromCode\$\$07X1\$\$\}/, 'custom-info'],
           [
             new RegExp(
-              'qf.(' + 
+              'qf.(' +
               self.names.value
                 .filter((name: string) => !!name)
                 .map((name: string) => name.replace(/([\{\}\$])/g, '\\$1'))
@@ -248,7 +248,7 @@ a = {
         if (symbal !== 'qf.') return;
         return {
           suggestions: self.names.value
-            .filter((name: string) => !!name) 
+            .filter((name: string) => !!name)
             .map((name: string) => ({
               label: name,
               kind: monaco.languages.CompletionItemKind.Enum,

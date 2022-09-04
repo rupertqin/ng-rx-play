@@ -7,10 +7,8 @@ import { Component, OnChanges, SimpleChanges, Input, ChangeDetectionStrategy } f
       <div>
         <button (click)="changeName()"> change name </button>
       </div>
-      <div>
-        FullNamePipe: {{ name | fullname: data.familyName }}
-      </div>
-      <div>
+      <div> FullNamePipe: {{ name | utils:'say' }} </div>
+      <div *ngIf="null | utils:'isNull'">
         getterFullName: {{ getterFullName }}
       </div>
       <div>
@@ -36,7 +34,7 @@ export class TemplateExpressionItemComponent implements OnChanges {
 
   @Input() familyName: string = ''
 
-  @Input() 
+  @Input()
   data: any = {
     dd: 'dd'
   };

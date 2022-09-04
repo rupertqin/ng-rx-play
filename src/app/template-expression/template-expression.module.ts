@@ -6,13 +6,14 @@ import { TemplateExpressionRoutingModule } from './template-expression-routing.m
 import { TemplateExpressionComponent } from './template-expression.component';
 import { TemplateExpressionItemComponent } from './template-expression-item.component';
 import { FullnamePipe } from './fullname.pipe';
-
+import { BasePipe } from './pipes';
 
 @NgModule({
   declarations: [
     TemplateExpressionComponent,
     TemplateExpressionItemComponent,
     FullnamePipe,
+    BasePipe,
   ],
   imports: [
     CommonModule,

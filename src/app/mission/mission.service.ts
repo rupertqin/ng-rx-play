@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Subject, Observable, Subscriber } from 'rxjs';
+import {FOR_ROOT_OPTIONS_TOKEN} from './mission.service.provider'
 
 @Injectable()
 export class MissionService {
@@ -10,9 +11,10 @@ export class MissionService {
 
   missionAnnounced$: Observable<string>;
   missionConfirmed$: Observable<string>;
+  config: any;
 
-
-  constructor() {
+  constructor(@Inject(FOR_ROOT_OPTIONS_TOKEN) config: any) {
+    this.config = config;
     // Observable string streams
     this.missionAnnounced$ = new Observable(subscriber => {
       this.missionAnnouncedSource.push(subscriber)
