@@ -17,23 +17,22 @@ export class RxComponent implements OnInit {
 
   }
   add() {
-    this.getData().subscribe((val) => {
-      this.ob.next(val)
-    });
+    this.ob.next({page: 1})
   }
 
-  getData() {
+  getData(filters: any) {
+    console.log('filters: ', filters);
     const newob = new Subject();
     setTimeout(() => {
       newob.next({ data: this.count++ })
-    }, 3000)
+    }, 1000)
     return  newob
   }
 
   ngOnInit(): void {
     this.ob.pipe(
       tap(_ => this.loading = true),
-      switchMap(() => this.getData())
+      switchMap((filters) => this.getData(filters))
     ).subscribe(val => {
       console.log(val)
       this.loading = false;
